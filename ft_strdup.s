@@ -2,6 +2,7 @@ bits 64
 
 extern  ft_strlen
 extern  ft_strcpy
+extern  malloc
 
 section .text
         global ft_strdup

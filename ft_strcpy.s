@@ -10,13 +10,13 @@ ft_strcpy:
         ret
 
 _not_zero:
-        mov [rdi + rbx], bl
+        mov [rdi + rbx], cl
         inc rbx
         call _printLoop
 
 _printLoop:
-        mov bl, [rsi + rbx]
-        cmp bl, 0
+        mov cl, [rsi + rbx]
+        cmp cl, 0
         jne _not_zero
 
         mov byte[rdi + rbx], 0
