@@ -9,7 +9,7 @@ ft_strcmp:
 
         ret
 
-_compare
+_compare:
         sub rdx, rcx
         mov rax, rdx
 

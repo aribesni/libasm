@@ -19,7 +19,7 @@ void     test_strdup(void)
 
 void     test_read(void)
 {
-    int fd;
+//    int fd;
 
 //  printf("%i\n", ft_read(1, "Hello there", 11));
     printf("%zi\n", ft_read(1, "Hello there", 11));

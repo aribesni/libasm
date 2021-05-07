@@ -1,27 +1,27 @@
-NAME = libasm.a
+NAME = 		libasm.a
 
-SRC_S = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s ft_write.s ft_read.s
+SRC_S = 	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s ft_write.s ft_read.s
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = 	-Wall -Werror -Wextra
 
-OBJS = 		$(SRC_S:.s=.o)
+OBJS = 		${SRC_S:.s=.o}
 
-all:		$(NAME)
+all:		${NAME}
 
-$(NAME):	$(OBJS)
-			ar rcs -s $(NAME) $(OBJS)
+${NAME}:	${OBJS}
+			ar rcs -s ${NAME} ${OBJS}
 
-%.o : %.s
+%.o : 		%.s
 			nasm -f elf64 $<
 
-test:		$(NAME)
-		clang -fno-builtin main.c $(OBJS) -o test
+test:		${NAME}
+			clang main.c ${OBJS} -o test
 			
 clean:	
-			rm -f $(OBJS)
+			rm -f ${OBJS}
 
 fclean:		clean
-			rm -f $(NAME)
+			rm -f ${NAME}
 			rm -f test
 
 re:			fclean all
