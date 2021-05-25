@@ -13,26 +13,22 @@
 bits 64
 
 section .text
-	global ft_strlen
+		global ft_strlen
 
 ft_strlen:
-		mov rax, rdi
-		call _print
-
-        ret
-
-_print:
-		push rax
-		mov rbx, 0
+		mov rcx, 0			; int i = 0
 
 _printLoop:
-		inc rax
-		inc rbx
-		mov cl, [rax]
-		cmp cl, 0
-		jne _printLoop
+		mov dl, [rdi]
+		cmp dl, 0			; compare with '\0'
+		je _return
 
-		pop rsi
-		mov rax, rbx
+		inc rcx				; i++
+		inc rdi				; move through string
+		
+		jmp _printLoop
+
+_return:
+		mov rax, rcx		; move i into return value
 
 		ret

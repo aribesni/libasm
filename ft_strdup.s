@@ -20,13 +20,18 @@ section .text
         global ft_strdup
 
 ft_strdup:
-        mov r12, rdi
-        call ft_strlen
-        add rax, 1
-        mov rdi, rax
-        call malloc
-        mov rdi, rax
-        mov rsi, r12
-        call ft_strcpy
+        push r12                ; push r12 onto the stack
+        mov r12, rdi            ; mov str in r12
+        call ft_strlen          ; ft_strlen returns size in rax
 
-        ret
+        add rax, 1              ; add 1 to size for '\0'
+        mov rdi, rax            ; mov size in rdi to call malloc
+        call malloc             ; returns string in rax
+
+        mov rdi, rax            ; mov new string in first param of ft_strcpy
+        mov rsi, r12            ; mov first string in second param of ft_strcpy
+        call ft_strcpy          ; returns string in rax
+
+        pop r12                 ; restore r12 to preserve its value
+
+        ret                     ; return rax

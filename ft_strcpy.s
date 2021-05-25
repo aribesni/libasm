@@ -16,23 +16,25 @@ section .text
         global ft_strcpy
 
 ft_strcpy:
-        mov rbx, 0
-        call _printLoop
+        mov rdx, 0              ; int i = 0
+
+_printLoop:
+        mov cl, [rsi + rdx]     ; copy src + i into smaller register
+        cmp cl, 0               ; compare with '\0'
+        jne _not_zero
+
+        mov byte[rdi + rdx], 0  ; put '\0' at end of dest
+
+        call _return
 
         ret
 
 _not_zero:
-        mov [rdi + rbx], cl
-        inc rbx
+        mov [rdi + rdx], cl     ; mov src + i into dest + i
+        inc rdx                 ; i++
         call _printLoop
 
-_printLoop:
-        mov cl, [rsi + rbx]
-        cmp cl, 0
-        jne _not_zero
-
-        mov byte[rdi + rbx], 0
-
-        mov rax, rdi
+_return:
+        mov rax, rdi            ; put dest in return value
 
         ret
